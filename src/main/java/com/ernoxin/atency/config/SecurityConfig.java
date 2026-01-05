@@ -4,7 +4,9 @@ import com.ernoxin.atency.security.CustomUserDetailsService;
 import com.ernoxin.atency.security.JwtAuthenticationFilter;
 import com.ernoxin.atency.security.RestAccessDeniedHandler;
 import com.ernoxin.atency.security.RestAuthenticationEntryPoint;
+import com.ernoxin.atency.logging.RequestTraceLoggingFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.SecurityContextHolderFilter;
 
 @Configuration
 @EnableMethodSecurity
@@ -46,7 +49,8 @@ public class SecurityConfig {
                         .accessDeniedHandler(restAccessDeniedHandler)
                 )
                 .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(requestTraceLoggingFilter(), SecurityContextHolderFilter.class);
 
         return http.build();
     }
@@ -66,5 +70,18 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) {
         return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public RequestTraceLoggingFilter requestTraceLoggingFilter() {
+        return new RequestTraceLoggingFilter();
+    }
+
+    @Bean
+    public FilterRegistrationBean<RequestTraceLoggingFilter> requestTraceLoggingFilterRegistration(
+            RequestTraceLoggingFilter filter) {
+        FilterRegistrationBean<RequestTraceLoggingFilter> registration = new FilterRegistrationBean<>(filter);
+        registration.setEnabled(false);
+        return registration;
     }
 }

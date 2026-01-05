@@ -1,7 +1,6 @@
 package com.ernoxin.atency.security;
 
-import com.ernoxin.atency.dto.BaseResponse;
-import com.ernoxin.atency.dto.ErrorResult;
+import com.ernoxin.atency.dto.ApiErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +23,11 @@ public class RestAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException {
-        ErrorResult result = ErrorResult.builder()
-                .message("Access denied")
-                .path(request.getRequestURI())
-                .build();
-        BaseResponse<ErrorResult> body = BaseResponse.of(HttpStatus.FORBIDDEN, result);
+        ApiErrorResponse body = ApiErrorResponse.of(
+                HttpStatus.FORBIDDEN,
+                "You do not have permission to perform this action.",
+                request.getRequestURI(),
+                null);
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         objectMapper.writeValue(response.getOutputStream(), body);

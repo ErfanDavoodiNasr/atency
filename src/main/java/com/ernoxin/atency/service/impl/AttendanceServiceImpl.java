@@ -141,7 +141,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Transactional(readOnly = true)
     public List<AttendanceRecordDto> getRecordsByUserId(Long userId) {
         userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User does not exist."));
         return attendanceRepository.findAllByUserIdOrderByDateDesc(userId)
                 .stream()
                 .map(attendance -> toDto(attendance, true))
@@ -171,7 +171,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     private User getUserByUsername(String username) {
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User does not exist."));
     }
 
     private AttendanceRecordDto toDto(Attendance attendance, boolean includeUser) {

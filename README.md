@@ -65,3 +65,28 @@ Use the JWT from login/registration:
 ```
 Authorization: Bearer <token>
 ```
+
+## Request Tracing and Errors
+
+- Every HTTP request has a `referenceId` for tracing.
+- Clients may supply `X-Reference-Id`; otherwise a new UUID is generated.
+- The `referenceId` is returned in the response header and response body.
+- Logs include `referenceId` to correlate requests and errors.
+
+### Error Response Format
+
+```
+{
+  "referenceId": "uuid",
+  "timestamp": "ISO-8601",
+  "status": 400,
+  "error": "BAD_REQUEST",
+  "message": "Human-readable message",
+  "path": "/api/auth/login",
+  "errors": {
+    "fieldName": "validation message"
+  }
+}
+```
+
+For validation failures, the `errors` object is returned with field-level messages.

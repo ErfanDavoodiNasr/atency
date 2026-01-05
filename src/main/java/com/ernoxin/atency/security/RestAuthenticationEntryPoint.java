@@ -1,7 +1,6 @@
 package com.ernoxin.atency.security;
 
-import com.ernoxin.atency.dto.BaseResponse;
-import com.ernoxin.atency.dto.ErrorResult;
+import com.ernoxin.atency.dto.ApiErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +23,11 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
                          AuthenticationException authException) throws IOException {
-        ErrorResult result = ErrorResult.builder()
-                .message("Unauthorized")
-                .path(request.getRequestURI())
-                .build();
-        BaseResponse<ErrorResult> body = BaseResponse.of(HttpStatus.UNAUTHORIZED, result);
+        ApiErrorResponse body = ApiErrorResponse.of(
+                HttpStatus.UNAUTHORIZED,
+                "Authentication required.",
+                request.getRequestURI(),
+                null);
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         objectMapper.writeValue(response.getOutputStream(), body);

@@ -12,7 +12,7 @@
 
     <groupId>com.ernoxin</groupId>
     <artifactId>atency</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>Atency</name>
     <description>Atency - employee attendance management system (collaborative development)</description>
 
