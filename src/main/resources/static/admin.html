@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atency | Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="admin" data-auth="required" data-role="ADMIN">
+    <header class="app-header">
+      <div class="container header-inner">
+        <a class="brand" href="dashboard.html">
+          <span class="brand-mark">A</span>
+          <span class="brand-name">Atency</span>
+        </a>
+        <nav class="app-nav">
+          <a class="nav-link" href="dashboard.html" data-nav="dashboard">Dashboard</a>
+          <a class="nav-link" href="attendance.html" data-nav="attendance">Attendance</a>
+          <a class="nav-link" href="history.html" data-nav="history">History</a>
+          <a class="nav-link admin-only" href="admin.html" data-nav="admin">Admin</a>
+        </nav>
+        <div class="header-actions">
+          <div class="user-chip">
+            <span class="user-dot"></span>
+            <span data-username>Admin</span>
+          </div>
+          <button class="btn ghost" id="logoutButton" type="button">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="container">
+        <section class="page-header">
+          <div>
+            <div class="page-title">Admin overview</div>
+            <div class="page-subtitle">Monitor team attendance activity.</div>
+          </div>
+        </section>
+
+        <div id="adminMessage" class="alert hidden" role="status" aria-live="polite"></div>
+
+        <section class="stat-grid">
+          <div class="card">
+            <div class="stat-label">Total employees</div>
+            <div class="stat-value" id="adminTotalEmployees">--</div>
+          </div>
+          <div class="card">
+            <div class="stat-label">Present today</div>
+            <div class="stat-value" id="adminTodayPresent">--</div>
+          </div>
+          <div class="card">
+            <div class="stat-label">Total records</div>
+            <div class="stat-value" id="adminTotalRecords">--</div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top: 24px;">
+          <div class="page-title">Attendance records</div>
+          <div class="page-subtitle">All logged attendance entries.</div>
+          <div class="table-wrap" style="margin-top: 16px;">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Date</th>
+                  <th>Check-in</th>
+                  <th>Check-out</th>
+                  <th>Worked hours</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody"></tbody>
+            </table>
+          </div>
+          <div id="adminEmpty" class="empty-state hidden">No records available yet.</div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="app-footer">Developed by Erfan &amp; Codex</footer>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+  </body>
+</html>

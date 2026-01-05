@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atency | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="login">
+    <main class="auth-page">
+      <section class="auth-card">
+        <div class="brand">
+          <div class="brand-mark">A</div>
+          <div class="brand-name">Atency</div>
+        </div>
+        <h1 class="auth-title">Sign in</h1>
+        <p class="auth-subtitle">Enter your credentials to continue.</p>
+        <form class="form" id="loginForm">
+          <div class="form-field">
+            <label for="loginUsername">Username</label>
+            <input
+              id="loginUsername"
+              name="username"
+              type="text"
+              autocomplete="username"
+              placeholder="Your username"
+              required
+            />
+          </div>
+          <div class="form-field">
+            <label for="loginPassword">Password</label>
+            <input
+              id="loginPassword"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Your password"
+              required
+            />
+          </div>
+          <button class="btn primary" id="loginButton" type="submit">
+            <span class="btn-text">Log in</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+        <div id="loginMessage" class="alert hidden" role="status" aria-live="polite"></div>
+        <div class="auth-footer">
+          No account? <a href="register.html">Register</a>
+        </div>
+      </section>
+    </main>
+    <footer class="app-footer">Developed by Erfan &amp; Codex</footer>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+  </body>
+</html>

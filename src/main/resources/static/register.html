@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atency | Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="register">
+    <main class="auth-page">
+      <section class="auth-card">
+        <div class="brand">
+          <div class="brand-mark">A</div>
+          <div class="brand-name">Atency</div>
+        </div>
+        <h1 class="auth-title">Create account</h1>
+        <p class="auth-subtitle">Set up your profile in a minute.</p>
+        <form class="form" id="registerForm">
+          <div class="form-field">
+            <label for="registerFullName">Full name</label>
+            <input
+              id="registerFullName"
+              name="fullName"
+              type="text"
+              autocomplete="name"
+              placeholder="Your full name"
+              required
+            />
+            <div class="field-error" id="errorFullName"></div>
+          </div>
+          <div class="form-field">
+            <label for="registerUsername">Username</label>
+            <input
+              id="registerUsername"
+              name="username"
+              type="text"
+              autocomplete="username"
+              placeholder="Choose a username"
+              required
+            />
+            <div class="field-error" id="errorUsername"></div>
+          </div>
+          <div class="form-field">
+            <label for="registerPassword">Password</label>
+            <input
+              id="registerPassword"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Create a password"
+              required
+            />
+            <div class="field-error" id="errorPassword"></div>
+          </div>
+          <button class="btn primary" id="registerButton" type="submit">
+            <span class="btn-text">Register</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+        <div id="registerMessage" class="alert hidden" role="status" aria-live="polite"></div>
+        <div class="auth-footer">
+          Already registered? <a href="login.html">Log in</a>
+        </div>
+      </section>
+    </main>
+    <footer class="app-footer">Developed by Erfan &amp; Codex</footer>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atency | Attendance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-page="attendance" data-auth="required">
+    <header class="app-header">
+      <div class="container header-inner">
+        <a class="brand" href="dashboard.html">
+          <span class="brand-mark">A</span>
+          <span class="brand-name">Atency</span>
+        </a>
+        <nav class="app-nav">
+          <a class="nav-link" href="dashboard.html" data-nav="dashboard">Dashboard</a>
+          <a class="nav-link" href="attendance.html" data-nav="attendance">Attendance</a>
+          <a class="nav-link" href="history.html" data-nav="history">History</a>
+          <a class="nav-link admin-only hidden" href="admin.html" data-nav="admin">Admin</a>
+        </nav>
+        <div class="header-actions">
+          <div class="user-chip">
+            <span class="user-dot"></span>
+            <span data-username>Employee</span>
+          </div>
+          <button class="btn ghost" id="logoutButton" type="button">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="container">
+        <section class="page-header">
+          <div>
+            <div class="page-title">Attendance</div>
+            <div class="page-subtitle">Track today in real time.</div>
+          </div>
+        </section>
+
+        <section class="grid-2">
+          <div class="card">
+            <div class="page-subtitle" id="todayDate">--</div>
+            <div class="clock" id="liveClock">--:--:--</div>
+            <div style="margin-top: 16px;">
+              <span class="status-badge" id="todayStatusBadge" data-status="pending">Pending</span>
+            </div>
+            <div class="page-subtitle" id="todayStatusText" style="margin-top: 10px;">
+              Loading status...
+            </div>
+          </div>
+          <div class="card">
+            <div class="page-title">Actions</div>
+            <div class="page-subtitle">Check in or check out for today.</div>
+            <div class="button-row">
+              <button class="btn primary" id="checkInButton" type="button">
+                <span class="btn-text">Check in</span>
+                <span class="btn-spinner" aria-hidden="true"></span>
+              </button>
+              <button class="btn outline" id="checkOutButton" type="button">
+                <span class="btn-text">Check out</span>
+                <span class="btn-spinner" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div id="attendanceMessage" class="alert hidden" role="status" aria-live="polite"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="app-footer">Developed by Erfan &amp; Codex</footer>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/ui.js"></script>
+  </body>
+</html>
